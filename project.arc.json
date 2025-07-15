@@ -3,7 +3,7 @@
     "name": "Lego Island",
     "description": "Lego-themed Open World Action-Adventure game.",
     "author": "Mindscape",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "installLocation": "U:/Applications/Lego_Island",
     "appId": "NikN_Lego_Island",
     "store": {
@@ -16,6 +16,6 @@
   "outFile": "Lego_Island.arc",
   "payloadDir": "src",
   "devPort": 3128,
-  "buildHash": "9efa6d1f",
+  "buildHash": "ed497741",
   "noHotRelaunch": false
 }

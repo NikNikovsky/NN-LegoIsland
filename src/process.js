@@ -1,13 +1,5 @@
 // process.js - Adapted for Lego Island with Polling for Responsiveness and App Close Shortcut
 
-// Explicitly define LogLevel enum values for use within this module.
-const LogLevel = {
-    info: 0,
-    warning: 1,
-    error: 2,
-    critical: 3
-};
-
 const html = await loadHtml("body.html");
 
 /**
