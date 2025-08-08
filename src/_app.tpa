@@ -26,9 +26,10 @@
   "state": {
     "minimized": false,
     "maximized": true,
-    "headless": true,
+    "headless": false,
     "resizable": false,
-    "fullscreen": false
+    "fullscreen": true
+    
   },
   "controls": {
     "minimize": true,
@@ -39,5 +40,6 @@
   "hidden": false,
   "core": false,
   "entrypoint": "isle.js",
-  "id": "NikN_Lego_Island"
+  "id": "NikN_Lego_Island",
+  "overlay": true
 }
