@@ -26,9 +26,10 @@
   "state": {
     "minimized": false,
     "maximized": true,
-    "headless": true,
+    "headless": false,
     "resizable": false,
-    "fullscreen": false
+    "fullscreen": false,
+    "overlay": true
   },
   "controls": {
     "minimize": true,
