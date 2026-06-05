@@ -16,6 +16,6 @@
   "outFile": "Lego_Island.arc",
   "payloadDir": "src",
   "devPort": 3128,
-  "buildHash": "ed497741",
+  "buildHash": "0a1a70d3",
   "noHotRelaunch": false
 }
