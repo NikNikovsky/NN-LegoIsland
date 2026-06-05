@@ -51,6 +51,7 @@ class proc extends ThirdPartyAppProcess {
         body.innerHTML = html; // This line injects the content from body.html
 
         this.Log("LEGO Island rendered.", LogLevel.info);
+        this.Log("render() method called - process lifecycle initiated.", LogLevel.warning);
 
         // Get references to the elements AFTER they are rendered into the DOM
         this.appWrapper = document.getElementById('app-wrapper');
@@ -91,23 +92,36 @@ class proc extends ThirdPartyAppProcess {
             this.acceleratorStore = [];
             this.Log("ArcAPI acceleratorStore initialized/cleared.", LogLevel.info);
 
-            // Register Alt + Q to simply close the app
-            this.acceleratorStore.push({
-                alt: true, // Listen for Alt key
-                key: "q",  // Listen for 'q' key
-                action: async (procInstance, event) => { // Made action async
-                    this.Log("ArcAPI Accelerator: Alt+Q ACTION triggered. Closing app directly.", LogLevel.info);
-                    if (typeof procInstance.killSelf === 'function') {
-                        await procInstance.killSelf();
-                        this.Log("Lego Island process killed.", LogLevel.info);
-                    } else {
-                        this.Log("killSelf() method not found. Cannot close app.", LogLevel.error);
-                    }
-                    event.preventDefault(); // Prevent default browser behavior
-                },
-                global: true
-            });
-            this.Log("ArcAPI Accelerator: Alt+Q shortcut registered.", LogLevel.info);
+            // Code that used to work but doesn't for some reason. Could be a beta moment for all I know.
+ //           this.acceleratorStore.push({
+ //               alt: true, // Listen for Alt key
+ //                key: "q",  // Listen for 'q' key
+ //              action: async (procInstance, event) => { // Made action async
+ //                   this.Log(">>> Alt+Q ACTION CALLBACK FIRED <<<", LogLevel.warning);
+ //                   this.Log("ArcAPI Accelerator: Alt+Q ACTION triggered. Closing app directly.", LogLevel.info);
+ //                   if (typeof procInstance.killSelf === 'function') {
+ //                       await procInstance.killSelf();
+ //                       this.Log("Lego Island process killed.", LogLevel.info);
+ //                   } else {
+ //                       this.Log("killSelf() method not found. Cannot close app.", LogLevel.error);
+ //                   }
+ //                   event.preventDefault(); // Prevent default browser behavior
+ //               },
+ //               global: true
+ //           });
+ //           this.Log("ArcAPI Accelerator: Alt+Q shortcut registered.", LogLevel.info);
+document.addEventListener('keydown', async (e) => {
+    if (e.altKey && e.key.toLowerCase() === 'q') {
+        this.Log("BROWSER DETECTED: Alt+Q keydown event fired - attempting to close app", LogLevel.warning);
+        if (typeof this.killSelf === 'function') {
+            await this.killSelf();
+            this.Log("Lego Island process killed via browser listener.", LogLevel.info);
+        } else {
+            this.Log("killSelf() method not found on this context.", LogLevel.error);
+        }
+        e.preventDefault();
+    }
+});
             // --- END: ArcAPI Keyboard Shortcuts ---
 
             // Initial diagnostic logs (keep these to verify initial state)
